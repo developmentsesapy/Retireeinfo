@@ -170,6 +170,32 @@
             border-radius: 10px;
             border: 2px solid var(--border-green);
             margin: 0.25rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .preview-image:hover {
+            transform: scale(1.5);
+            z-index: 1000;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .thumbnail-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .thumbnail-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0,0,0,0.7);
+            color: white;
+            padding: 2px 5px;
+            font-size: 10px;
+            text-align: center;
+            border-radius: 0 0 8px 8px;
         }
         
         .loading-overlay {
@@ -1075,7 +1101,12 @@
                     <td>${item.fullName}</td>
                     <td>${item.school}</td>
                     <td>
-                        ${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" style="width: 50px; height: 50px;">` : 'ไม่มีภาพ'}
+                        ${item.firstImage ? `
+                        <div class="thumbnail-container">
+                            <img src="${item.firstImage}" class="preview-image" style="width: 50px; height: 50px;">
+                            <div class="thumbnail-overlay">${item.imageCount || 0} ภาพ</div>
+                        </div>
+                        ` : 'ไม่มีภาพ'}
                     </td>
                     <td>
                         <span class="badge ${item.status === 'ตรวจสอบแล้ว' ? 'bg-success' : 'bg-warning'}">${item.status}</span>
@@ -1100,7 +1131,12 @@
                     <td>${item.fullName}</td>
                     <td>${item.school}</td>
                     <td>
-                        ${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" style="width: 50px; height: 50px;">` : 'ไม่มีภาพ'}
+                        ${item.firstImage ? `
+                        <div class="thumbnail-container">
+                            <img src="${item.firstImage}" class="preview-image" style="width: 50px; height: 50px;">
+                            <div class="thumbnail-overlay">${item.imageCount || 0} ภาพ</div>
+                        </div>
+                        ` : 'ไม่มีภาพ'}
                     </td>
                     <td>
                         <span class="badge ${item.status === 'ตรวจสอบแล้ว' ? 'bg-success' : 'bg-warning'}">${item.status}</span>
@@ -1125,7 +1161,12 @@
                         <span class="badge ${item.status === 'ตรวจสอบแล้ว' ? 'bg-success' : 'bg-warning'}">${item.status}</span>
                     </td>
                     <td>
-                        ${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" style="width: 40px; height: 40px;">` : 'ไม่มีภาพ'}
+                        ${item.firstImage ? `
+                        <div class="thumbnail-container">
+                            <img src="${item.firstImage}" class="preview-image" style="width: 40px; height: 40px;">
+                            <div class="thumbnail-overlay">${item.imageCount || 0} ภาพ</div>
+                        </div>
+                        ` : 'ไม่มีภาพ'}
                     </td>
                     <td>
                         <button class="btn btn-sm btn-primary me-1" onclick="editData(${index})">
@@ -1418,5 +1459,5 @@
             overlay.style.display = show ? 'flex' : 'none';
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96656545954ac691',t:'MTc1MzcxNjM5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
