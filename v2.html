@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบส่งประวัติย่อและภาพประทับใจ</title>
     
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=K2D:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     
+    <!-- SweetAlert2 -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css" rel="stylesheet">
     
+    <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
     <style>
@@ -224,6 +230,7 @@
     </style>
 </head>
 <body>
+    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="text-center">
             <div class="spinner"></div>
@@ -231,6 +238,7 @@
         </div>
     </div>
 
+    <!-- PDPA Modal -->
     <div class="modal fade" id="pdpaModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -274,6 +282,7 @@
         </div>
     </div>
 
+    <!-- Header -->
     <div class="header-section">
         <div class="container">
             <div class="logo-container justify-content-center">
@@ -286,7 +295,9 @@
         </div>
     </div>
 
+    <!-- Main Content -->
     <div class="container main-container">
+        <!-- Navigation Tabs -->
         <ul class="nav nav-tabs" id="mainTabs" role="tablist">
             <li class="nav-item" role="presentation">
                 <button class="nav-link active" id="upload-tab" data-bs-toggle="tab" data-bs-target="#upload" type="button" role="tab">
@@ -305,7 +316,9 @@
             </li>
         </ul>
 
+        <!-- Tab Content -->
         <div class="tab-content" id="mainTabContent">
+            <!-- Tab 1: Upload Form -->
             <div class="tab-pane fade show active" id="upload" role="tabpanel">
                 <form id="uploadForm">
                     <div class="row">
@@ -393,6 +406,7 @@
                         <textarea class="form-control" id="additionalMessage" rows="3" placeholder="กรอกข้อความเพิ่มเติม (ถ้ามี)"></textarea>
                     </div>
 
+                    <!-- File Upload Section -->
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <div class="card">
@@ -429,6 +443,7 @@
                         </div>
                     </div>
 
+                    <!-- Progress Bar -->
                     <div id="uploadProgress" class="mb-3" style="display: none;">
                         <div class="progress">
                             <div class="progress-bar" role="progressbar" style="width: 0%">0%</div>
@@ -443,7 +458,9 @@
                 </form>
             </div>
 
+            <!-- Tab 2: Dashboard -->
             <div class="tab-pane fade" id="dashboard" role="tabpanel">
+                <!-- Statistics Cards -->
                 <div class="row mb-4">
                     <div class="col-md-4 mb-3">
                         <div class="stats-card">
@@ -468,6 +485,7 @@
                     </div>
                 </div>
 
+                <!-- Charts -->
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <div class="card">
@@ -491,6 +509,7 @@
                     </div>
                 </div>
 
+                <!-- Search -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <div class="input-group">
@@ -500,6 +519,7 @@
                     </div>
                 </div>
 
+                <!-- Recent Data Table -->
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-list me-2"></i>ข้อมูลล่าสุด (5 รายการ)
@@ -517,14 +537,16 @@
                                     </tr>
                                 </thead>
                                 <tbody id="recentDataBody">
-                                    </tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Tab 3: Data Management -->
             <div class="tab-pane fade" id="manage" role="tabpanel">
+                <!-- Admin Password Modal -->
                 <div class="modal fade" id="adminModal" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -546,6 +568,7 @@
                     </div>
                 </div>
 
+                <!-- Edit Modal -->
                 <div class="modal fade" id="editModal" tabindex="-1">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -564,14 +587,16 @@
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">โรงเรียน</label>
                                             <select class="form-select" id="editSchool">
-                                                </select>
+                                                <!-- Options will be populated -->
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">ตำแหน่ง</label>
                                             <select class="form-select" id="editPosition">
-                                                </select>
+                                                <!-- Options will be populated -->
+                                            </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label class="form-label">สถานะ</label>
@@ -591,6 +616,7 @@
                     </div>
                 </div>
 
+                <!-- Management Controls -->
                 <div class="row mb-3">
                     <div class="col-md-6">
                         <button class="btn btn-success me-2" onclick="refreshData()">
@@ -602,6 +628,7 @@
                     </div>
                 </div>
 
+                <!-- Data Table -->
                 <div class="card">
                     <div class="card-header">
                         <i class="fas fa-table me-2"></i>จัดการข้อมูลทั้งหมด
@@ -622,7 +649,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="dataTableBody">
-                                    </tbody>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -631,323 +658,372 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
-    
-    <script>
-        // Google Apps Script host URL (replace with your deployed web app URL)
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwAH2iNZ0kXB7D6deXN4Wj1IQN8C6of947iKXqBSVGB0jerv32c0mTt79V4k3pN29hP/exec"; // Replace with your deployed Apps Script URL
 
-        // --- PDPA Modal Handling ---
-        function showPdpaModal() {
-            const pdpaAccepted = localStorage.getItem('pdpaAccepted');
-            if (!pdpaAccepted) {
+    <script>
+        // Configuration
+        const CONFIG = {
+            SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwAH2iNZ0kXB7D6deXN4Wj1IQN8C6of947iKXqBSVGB0jerv32c0mTt79V4k3pN29hP/exec',
+            MAX_FILE_SIZE: 30 * 1024 * 1024, // 30MB
+            MAX_IMAGES: 15,
+            ADMIN_PASSWORD: 'admin1234'
+        };
+
+        // Global variables
+        let allData = [];
+        let dataTable;
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            checkPDPAConsent();
+            initializeApp();
+        });
+
+        // PDPA Functions
+        function checkPDPAConsent() {
+            const consent = localStorage.getItem('pdpaConsent');
+            if (!consent) {
                 const pdpaModal = new bootstrap.Modal(document.getElementById('pdpaModal'));
                 pdpaModal.show();
             }
         }
 
         function acceptPDPA() {
-            localStorage.setItem('pdpaAccepted', 'true');
-            bootstrap.Modal.getInstance(document.getElementById('pdpaModal')).hide();
+            localStorage.setItem('pdpaConsent', 'true');
+            const pdpaModal = bootstrap.Modal.getInstance(document.getElementById('pdpaModal'));
+            pdpaModal.hide();
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'ยินดีต้อนรับ!',
+                text: 'ขอบคุณที่ยินยอมใช้งานระบบ',
+                timer: 2000,
+                showConfirmButton: false
+            });
         }
 
-        // --- Form Submission ---
-        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            showLoading(true);
+        // Initialize application
+        function initializeApp() {
+            setupEventListeners();
+            setDefaultDate();
+            loadData();
+        }
 
-            const submitDate = document.getElementById('submitDate').value;
-            const fullName = document.getElementById('fullName').value;
-            const position = document.getElementById('position').value;
-            const academicLevel = document.getElementById('academicLevel').value;
-            const school = document.getElementById('school').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const status = document.getElementById('status').value;
-            const additionalMessage = document.getElementById('additionalMessage').value;
+        // Set default date to today
+        function setDefaultDate() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('submitDate').value = today;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Form submission
+            document.getElementById('uploadForm').addEventListener('submit', handleFormSubmit);
             
-            const resumeFile = document.getElementById('resumeFile').files[0];
-            const imageFiles = Array.from(document.getElementById('imageFiles').files);
-
-            // Validate file types and limits
-            if (resumeFile && !['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'].includes(resumeFile.type)) {
-                Swal.fire('ข้อผิดพลาด', 'ไฟล์ประวัติย่อต้องเป็น PDF, DOC, DOCX, XLS, XLSX เท่านั้น', 'error');
-                showLoading(false);
-                return;
-            }
-
-            if (imageFiles.length > 15) {
-                Swal.fire('ข้อผิดพลาด', 'อัปโหลดภาพประทับใจได้สูงสุด 15 รูป', 'error');
-                showLoading(false);
-                return;
-            }
-            for (const file of imageFiles) {
-                if (!['image/jpeg', 'image/png', 'application/pdf'].includes(file.type)) {
-                    Swal.fire('ข้อผิดพลาด', 'ภาพประทับใจต้องเป็น JPG, JPEG, PNG, PDF เท่านั้น', 'error');
-                    showLoading(false);
-                    return;
-                }
-            }
+            // File uploads
+            document.getElementById('resumeFile').addEventListener('change', handleResumeUpload);
+            document.getElementById('imageFiles').addEventListener('change', handleImageUpload);
             
-            const readerPromises = [];
-            
-            // Read resume file
-            let encodedResumeFile = null;
-            if (resumeFile) {
-                readerPromises.push(new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        encodedResumeFile = {
-                            name: resumeFile.name,
-                            type: resumeFile.type,
-                            data: e.target.result.split(',')[1]
-                        };
-                        resolve();
-                    };
-                    reader.readAsDataURL(resumeFile);
-                }));
-            }
-
-            // Read image files
-            const encodedImageFiles = [];
-            for (const file of imageFiles) {
-                readerPromises.push(new Promise((resolve) => {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        encodedImageFiles.push({
-                            name: file.name,
-                            type: file.type,
-                            data: e.target.result.split(',')[1]
-                        });
-                        resolve();
-                    };
-                    reader.readAsDataURL(file);
-                }));
-            }
-
-            await Promise.all(readerPromises);
-
-            const formData = {
-                submitDate,
-                fullName,
-                position,
-                academicLevel,
-                school,
-                email,
-                phone,
-                status,
-                additionalMessage,
-                resumeFile: encodedResumeFile,
-                imageFiles: encodedImageFiles
-            };
-
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    showLoading(false);
-                    if (response.success) {
-                        Swal.fire('สำเร็จ', response.message, 'success');
-                        document.getElementById('uploadForm').reset();
-                        document.getElementById('resumePreview').innerHTML = '';
-                        document.getElementById('imagePreview').innerHTML = '';
-                        // Refresh data after successful submission
-                        loadRecentData();
-                        loadAllData();
-                        updateStatistics();
-                    } else {
-                        Swal.fire('ข้อผิดพลาด', response.message, 'error');
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    showLoading(false);
-                    console.error('Error submitting form:', error);
-                    Swal.fire('ข้อผิดพลาด', 'เกิดข้อผิดพลาดในการส่งข้อมูล: ' + error.message, 'error');
-                })
-                .doPost({ action: 'submit', data: formData });
-        });
-
-        // --- File Preview ---
-        document.getElementById('resumeFile').addEventListener('change', function(event) {
-            const preview = document.getElementById('resumePreview');
-            preview.innerHTML = '';
-            const file = event.target.files[0];
-            if (file) {
-                preview.innerHTML = `<p class="text-success mt-2">✅ ไฟล์: ${file.name}</p>`;
-            }
-        });
-
-        document.getElementById('imageFiles').addEventListener('change', function(event) {
-            const preview = document.getElementById('imagePreview');
-            preview.innerHTML = '';
-            const files = event.target.files;
-            if (files.length > 0) {
-                Array.from(files).forEach(file => {
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            preview.innerHTML += `<img src="${e.target.result}" class="preview-image" alt="Preview">`;
-                        };
-                        reader.readAsDataURL(file);
-                    } else if (file.type === 'application/pdf') {
-                        preview.innerHTML += `<div class="preview-image d-flex align-items-center justify-content-center bg-light text-danger" style="font-size: 2rem;"><i class="fas fa-file-pdf"></i></div>`;
+            // Tab changes
+            document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+                tab.addEventListener('shown.bs.tab', function(e) {
+                    if (e.target.id === 'dashboard-tab') {
+                        loadDashboard();
+                    } else if (e.target.id === 'manage-tab') {
+                        loadManagementData();
                     }
                 });
-            }
-        });
+            });
 
-        // --- Data Loading and Display ---
-        let allTableData = [];
-        let dataTable; // For DataTables instance
-
-        function loadAllData() {
-            showLoading(true);
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    showLoading(false);
-                    if (response.success) {
-                        allTableData = response.data.map(item => ({
-                            ...item,
-                            submitDate: new Date(item.submitDate).toLocaleDateString('th-TH'),
-                            // Ensure image is treated as HTML for DataTables
-                            imageHtml: item.firstImage ? `<img src="${item.firstImage}" class="preview-image" alt="ภาพตัวอย่าง">` : 'ไม่มีภาพ'
-                        }));
-                        renderDataTable(allTableData);
-                    } else {
-                        Swal.fire('ข้อผิดพลาด', response.message, 'error');
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    showLoading(false);
-                    console.error('Error loading all data:', error);
-                    Swal.fire('ข้อผิดพลาด', 'เกิดข้อผิดพลาดในการดึงข้อมูลทั้งหมด: ' + error.message, 'error');
-                })
-                .doGet({ action: 'getData' });
+            // Search functionality
+            document.getElementById('dashboardSearch').addEventListener('input', filterDashboardData);
         }
 
-        function renderDataTable(data) {
-            if (dataTable) {
-                dataTable.destroy();
-                $('#dataTable tbody').empty();
+        // Handle form submission
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            if (!validateForm()) return;
+            
+            showLoading(true);
+            
+            try {
+                const formData = await collectFormData();
+                const response = await submitData(formData);
+                
+                if (response.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'สำเร็จ!',
+                        text: 'ส่งข้อมูลเรียบร้อยแล้ว',
+                        timer: 3000,
+                        showConfirmButton: false
+                    });
+                    
+                    document.getElementById('uploadForm').reset();
+                    clearPreviews();
+                    setDefaultDate();
+                } else {
+                    throw new Error(response.message || 'เกิดข้อผิดพลาด');
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'เกิดข้อผิดพลาด!',
+                    text: error.message
+                });
+            } finally {
+                showLoading(false);
             }
-            dataTable = $('#dataTable').DataTable({
-                data: data,
-                columns: [
-                    { data: 'rowIndex', render: function(data, type, row, meta) { return meta.row + 1; } },
-                    { data: 'submitDate' },
-                    { data: 'fullName' },
-                    { data: 'school' },
-                    { data: 'position' },
-                    { data: 'status' },
-                    { data: 'imageHtml', orderable: false, searchable: false }, // Use the pre-rendered HTML
-                    {
-                        data: null,
-                        render: function(data, type, row) {
-                            return `
-                                <button class="btn btn-warning btn-sm me-1" onclick="openEditModal(${row.rowIndex})">
-                                    <i class="fas fa-edit"></i>
-                                </button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteData(${row.rowIndex})">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            `;
-                        },
-                        orderable: false,
-                        searchable: false
-                    }
-                ],
-                responsive: true,
-                language: {
-                    url: "https://cdn.datatables.net/plug-ins/1.13.6/i18n/th.json"
+        }
+
+        // Validate form
+        function validateForm() {
+            const requiredFields = ['submitDate', 'fullName', 'position', 'academicLevel', 'school', 'email', 'phone'];
+            
+            for (let field of requiredFields) {
+                const element = document.getElementById(field);
+                if (!element.value.trim()) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'กรุณากรอกข้อมูลให้ครบถ้วน',
+                        text: `กรุณากรอก${element.previousElementSibling.textContent}`
+                    });
+                    element.focus();
+                    return false;
+                }
+            }
+
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'รูปแบบอีเมลไม่ถูกต้อง',
+                    text: 'กรุณากรอกอีเมลให้ถูกต้อง'
+                });
+                return false;
+            }
+
+            // Validate phone
+            const phone = document.getElementById('phone').value;
+            if (!/^[0-9]{10}$/.test(phone)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'รูปแบบเบอร์โทรไม่ถูกต้อง',
+                    text: 'กรุณากรอกเบอร์โทร 10 หลัก'
+                });
+                return false;
+            }
+
+            return true;
+        }
+
+        // Collect form data
+        async function collectFormData() {
+            const formData = {
+                submitDate: document.getElementById('submitDate').value,
+                fullName: document.getElementById('fullName').value,
+                position: document.getElementById('position').value,
+                academicLevel: document.getElementById('academicLevel').value,
+                school: document.getElementById('school').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                additionalMessage: document.getElementById('additionalMessage').value,
+                status: document.getElementById('status').value,
+                resumeFile: null,
+                imageFiles: []
+            };
+
+            // Handle resume file
+            const resumeFile = document.getElementById('resumeFile').files[0];
+            if (resumeFile) {
+                formData.resumeFile = {
+                    name: resumeFile.name,
+                    type: resumeFile.type,
+                    data: await fileToBase64(resumeFile)
+                };
+            }
+
+            // Handle image files
+            const imageFiles = document.getElementById('imageFiles').files;
+            for (let i = 0; i < imageFiles.length; i++) {
+                const file = imageFiles[i];
+                formData.imageFiles.push({
+                    name: file.name,
+                    type: file.type,
+                    data: await fileToBase64(file)
+                });
+            }
+
+            return formData;
+        }
+
+        // Convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result.split(',')[1]);
+                reader.onerror = error => reject(error);
+            });
+        }
+
+        // Submit data to Google Apps Script
+        async function submitData(formData) {
+            const response = await fetch(CONFIG.SCRIPT_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain'
+                },
+                body: JSON.stringify({
+                    action: 'submit',
+                    data: formData
+                })
+            });
+
+            return await response.json();
+        }
+
+        // Handle resume file upload
+        function handleResumeUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (file.size > CONFIG.MAX_FILE_SIZE) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'ไฟล์ใหญ่เกินไป',
+                    text: 'ขนาดไฟล์ต้องไม่เกิน 30MB'
+                });
+                e.target.value = '';
+                return;
+            }
+
+            const preview = document.getElementById('resumePreview');
+            preview.innerHTML = `
+                <div class="alert alert-success">
+                    <i class="fas fa-file-pdf me-2"></i>
+                    <strong>${file.name}</strong>
+                    <br>
+                    <small>ขนาด: ${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+                </div>
+            `;
+        }
+
+        // Handle image files upload
+        function handleImageUpload(e) {
+            const files = Array.from(e.target.files);
+            
+            if (files.length > CONFIG.MAX_IMAGES) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'จำนวนไฟล์เกินกำหนด',
+                    text: `สามารถอัปโหลดได้สูงสุด ${CONFIG.MAX_IMAGES} ไฟล์`
+                });
+                e.target.value = '';
+                return;
+            }
+
+            const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+            if (totalSize > CONFIG.MAX_FILE_SIZE) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'ขนาดไฟล์รวมใหญ่เกินไป',
+                    text: 'ขนาดไฟล์รวมต้องไม่เกิน 30MB'
+                });
+                e.target.value = '';
+                return;
+            }
+
+            const preview = document.getElementById('imagePreview');
+            preview.innerHTML = '';
+
+            files.forEach((file, index) => {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = 'preview-image';
+                        img.title = file.name;
+                        preview.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    const fileDiv = document.createElement('div');
+                    fileDiv.className = 'alert alert-info d-inline-block me-2 mb-2';
+                    fileDiv.innerHTML = `<i class="fas fa-file me-2"></i>${file.name}`;
+                    preview.appendChild(fileDiv);
                 }
             });
         }
 
-        function loadRecentData() {
-            showLoading(true);
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    showLoading(false);
-                    if (response.success) {
-                        const recentDataBody = document.getElementById('recentDataBody');
-                        recentDataBody.innerHTML = '';
-                        const latest5 = response.data.slice(-5).reverse(); // Get latest 5 and reverse to show newest first
-
-                        if (latest5.length === 0) {
-                            recentDataBody.innerHTML = '<tr><td colspan="5" class="text-center">ไม่มีข้อมูลล่าสุด</td></tr>';
-                            return;
-                        }
-
-                        latest5.forEach(item => {
-                            const row = recentDataBody.insertRow();
-                            row.insertCell().textContent = item.fullName;
-                            row.insertCell().textContent = item.school;
-                            const imageCell = row.insertCell();
-                            if (item.firstImage) {
-                                imageCell.innerHTML = `<img src="${item.firstImage}" class="preview-image" alt="ภาพตัวอย่าง">`;
-                            } else {
-                                imageCell.textContent = 'ไม่มีภาพ';
-                            }
-                            row.insertCell().textContent = item.status;
-                            row.insertCell().textContent = new Date(item.submitDate).toLocaleDateString('th-TH');
-                        });
-                    } else {
-                        Swal.fire('ข้อผิดพลาด', response.message, 'error');
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    showLoading(false);
-                    console.error('Error loading recent data:', error);
-                    Swal.fire('ข้อผิดพลาด', 'เกิดข้อผิดพลาดในการดึงข้อมูลล่าสุด: ' + error.message, 'error');
-                })
-                .doGet({ action: 'getData' });
+        // Clear file previews
+        function clearPreviews() {
+            document.getElementById('resumePreview').innerHTML = '';
+            document.getElementById('imagePreview').innerHTML = '';
         }
 
-        // --- Statistics and Charts ---
-        function updateStatistics() {
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    if (response.success) {
-                        const data = response.data;
-                        document.getElementById('totalUsers').textContent = new Set(data.map(item => item.fullName)).size;
-                        document.getElementById('totalFiles').textContent = data.filter(item => item.resumeFile).length;
-                        document.getElementById('totalImages').textContent = data.reduce((sum, item) => sum + (item.imageCount || 0), 0);
-                        
-                        // Update Charts
-                        updateSchoolChart(data);
-                        updateStatusChart(data);
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    console.error('Error updating statistics:', error);
-                })
-                .doGet({ action: 'getData' });
-        }
-
-        let schoolChartInstance;
-        function updateSchoolChart(data) {
-            const schoolCounts = {};
-            data.forEach(item => {
-                schoolCounts[item.school] = (schoolCounts[item.school] || 0) + 1;
-            });
-            const labels = Object.keys(schoolCounts);
-            const counts = Object.values(schoolCounts);
-
-            const ctx = document.getElementById('schoolChart').getContext('2d');
-            if (schoolChartInstance) {
-                schoolChartInstance.destroy();
+        // Load data from Google Sheets
+        async function loadData() {
+            try {
+                const response = await fetch(CONFIG.SCRIPT_URL + '?action=getData');
+                const result = await response.json();
+                
+                if (result.success) {
+                    allData = result.data || [];
+                    updateStatistics();
+                }
+            } catch (error) {
+                console.error('Error loading data:', error);
             }
-            schoolChartInstance = new Chart(ctx, {
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            document.getElementById('totalUsers').textContent = allData.length;
+            document.getElementById('totalFiles').textContent = allData.filter(item => item.resumeFile).length;
+            document.getElementById('totalImages').textContent = allData.reduce((sum, item) => sum + (item.imageCount || 0), 0);
+        }
+
+        // Load dashboard
+        function loadDashboard() {
+            updateStatistics();
+            createCharts();
+            loadRecentData();
+        }
+
+        // Create charts
+        function createCharts() {
+            createSchoolChart();
+            createStatusChart();
+        }
+
+        // Create school chart
+        function createSchoolChart() {
+            const ctx = document.getElementById('schoolChart').getContext('2d');
+            
+            const schoolData = {};
+            allData.forEach(item => {
+                schoolData[item.school] = (schoolData[item.school] || 0) + 1;
+            });
+
+            new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: labels,
+                    labels: Object.keys(schoolData),
                     datasets: [{
                         label: 'จำนวนผู้ส่ง',
-                        data: counts,
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
+                        data: Object.values(schoolData),
+                        backgroundColor: 'rgba(76, 175, 80, 0.8)',
+                        borderColor: 'rgba(76, 175, 80, 1)',
                         borderWidth: 1
                     }]
                 },
@@ -955,123 +1031,201 @@
                     responsive: true,
                     scales: {
                         y: {
-                            beginAtZero: true,
-                            title: {
-                                display: true,
-                                text: 'จำนวนผู้ส่ง'
-                            }
+                            beginAtZero: true
                         }
                     }
                 }
             });
         }
 
-        let statusChartInstance;
-        function updateStatusChart(data) {
-            const statusCounts = {};
-            data.forEach(item => {
-                statusCounts[item.status] = (statusCounts[item.status] || 0) + 1;
-            });
-            const labels = Object.keys(statusCounts);
-            const counts = Object.values(statusCounts);
-
+        // Create status chart
+        function createStatusChart() {
             const ctx = document.getElementById('statusChart').getContext('2d');
-            if (statusChartInstance) {
-                statusChartInstance.destroy();
-            }
-            statusChartInstance = new Chart(ctx, {
+            
+            const statusData = {};
+            allData.forEach(item => {
+                statusData[item.status] = (statusData[item.status] || 0) + 1;
+            });
+
+            new Chart(ctx, {
                 type: 'pie',
                 data: {
-                    labels: labels,
+                    labels: Object.keys(statusData),
                     datasets: [{
-                        data: counts,
+                        data: Object.values(statusData),
                         backgroundColor: [
-                            'rgba(255, 99, 132, 0.6)', // ยังไม่ได้ตรวจสอบ
-                            'rgba(54, 162, 235, 0.6)'  // ตรวจสอบแล้ว
-                        ],
-                        borderColor: [
-                            'rgba(255, 99, 132, 1)',
-                            'rgba(54, 162, 235, 1)'
-                        ],
-                        borderWidth: 1
+                            'rgba(76, 175, 80, 0.8)',
+                            'rgba(255, 193, 7, 0.8)'
+                        ]
                     }]
                 },
                 options: {
-                    responsive: true,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        title: {
-                            display: true,
-                            text: 'สถิติตามสถานะการตรวจสอบ'
-                        }
-                    }
+                    responsive: true
                 }
             });
         }
 
-        // --- Admin Functions ---
-        const ADMIN_PASSWORD = "admin1234"; // TODO: Replace with a secure password or a more robust authentication mechanism
-
-        $('#manage-tab').on('shown.bs.tab', function (e) {
-            const adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
-            adminModal.show();
-        });
-
-        function verifyAdmin() {
-            const password = document.getElementById('adminPassword').value;
-            if (password === ADMIN_PASSWORD) {
-                bootstrap.Modal.getInstance(document.getElementById('adminModal')).hide();
-                loadAllData(); // Load data only after successful authentication
-                $('#adminPassword').val(''); // Clear password field
-            } else {
-                Swal.fire('ผิดพลาด', 'รหัสผ่านผู้ดูแลไม่ถูกต้อง', 'error');
-            }
+        // Load recent data
+        function loadRecentData() {
+            const recentData = allData.slice(-5).reverse();
+            const tbody = document.getElementById('recentDataBody');
+            
+            tbody.innerHTML = recentData.map(item => `
+                <tr>
+                    <td>${item.fullName}</td>
+                    <td>${item.school}</td>
+                    <td>
+                        ${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" style="width: 50px; height: 50px;">` : 'ไม่มีภาพ'}
+                    </td>
+                    <td>
+                        <span class="badge ${item.status === 'ตรวจสอบแล้ว' ? 'bg-success' : 'bg-warning'}">${item.status}</span>
+                    </td>
+                    <td>${new Date(item.submitDate).toLocaleDateString('th-TH')}</td>
+                </tr>
+            `).join('');
         }
 
-        function openEditModal(rowIndex) {
-            const rowData = allTableData[rowIndex];
-            if (!rowData) {
-                Swal.fire('ข้อผิดพลาด', 'ไม่พบข้อมูลสำหรับแก้ไข', 'error');
+        // Filter dashboard data
+        function filterDashboardData() {
+            const searchTerm = document.getElementById('dashboardSearch').value.toLowerCase();
+            const filteredData = allData.filter(item => 
+                item.fullName.toLowerCase().includes(searchTerm) ||
+                item.school.toLowerCase().includes(searchTerm)
+            );
+            
+            // Update recent data table with filtered results
+            const tbody = document.getElementById('recentDataBody');
+            tbody.innerHTML = filteredData.slice(0, 5).map(item => `
+                <tr>
+                    <td>${item.fullName}</td>
+                    <td>${item.school}</td>
+                    <td>
+                        ${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" style="width: 50px; height: 50px;">` : 'ไม่มีภาพ'}
+                    </td>
+                    <td>
+                        <span class="badge ${item.status === 'ตรวจสอบแล้ว' ? 'bg-success' : 'bg-warning'}">${item.status}</span>
+                    </td>
+                    <td>${new Date(item.submitDate).toLocaleDateString('th-TH')}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Load management data
+        function loadManagementData() {
+            const tbody = document.getElementById('dataTableBody');
+            
+            tbody.innerHTML = allData.map((item, index) => `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${new Date(item.submitDate).toLocaleDateString('th-TH')}</td>
+                    <td>${item.fullName}</td>
+                    <td>${item.school}</td>
+                    <td>${item.position}</td>
+                    <td>
+                        <span class="badge ${item.status === 'ตรวจสอบแล้ว' ? 'bg-success' : 'bg-warning'}">${item.status}</span>
+                    </td>
+                    <td>
+                        ${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" style="width: 40px; height: 40px;">` : 'ไม่มีภาพ'}
+                    </td>
+                    <td>
+                        <button class="btn btn-sm btn-primary me-1" onclick="editData(${index})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteData(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Initialize DataTable if not already initialized
+            if ($.fn.DataTable.isDataTable('#dataTable')) {
+                $('#dataTable').DataTable().destroy();
+            }
+            
+            dataTable = $('#dataTable').DataTable({
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/th.json'
+                },
+                pageLength: 10,
+                order: [[0, 'desc']]
+            });
+        }
+
+        // Edit data
+        function editData(index) {
+            const adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
+            adminModal.show();
+            
+            // Store the index for later use
+            window.editIndex = index;
+            window.editAction = 'edit';
+        }
+
+        // Delete data
+        function deleteData(index) {
+            const adminModal = new bootstrap.Modal(document.getElementById('adminModal'));
+            adminModal.show();
+            
+            // Store the index for later use
+            window.editIndex = index;
+            window.editAction = 'delete';
+        }
+
+        // Verify admin password
+        function verifyAdmin() {
+            const password = document.getElementById('adminPassword').value;
+            
+            if (password !== CONFIG.ADMIN_PASSWORD) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'รหัสผ่านไม่ถูกต้อง',
+                    text: 'กรุณากรอกรหัสผ่านให้ถูกต้อง'
+                });
                 return;
             }
 
-            document.getElementById('editRowId').value = rowIndex;
-            document.getElementById('editFullName').value = rowData.fullName;
-            document.getElementById('editStatus').value = rowData.status;
+            const adminModal = bootstrap.Modal.getInstance(document.getElementById('adminModal'));
+            adminModal.hide();
+            document.getElementById('adminPassword').value = '';
 
-            // Populate school dropdown
-            const editSchoolSelect = document.getElementById('editSchool');
-            editSchoolSelect.innerHTML = '<option value="">เลือกโรงเรียน</option>';
-            const schools = ["โรงเรียนพะเยาพิทยาคม", "โรงเรียนเชียงคำวิทยาคม", "โรงเรียนดอกคำใต้วิทยาคม", "โรงเรียนเชียงมวนวิทยาคม", "โรงเรียนปงวิทยาคม", "โรงเรียนแม่ใสวิทยาคม", "โรงเรียนภูซางวิทยาคม", "โรงเรียนภูกามยาววิทยาคม", "โรงเรียนสันป่าตองวิทยาคม", "โรงเรียนเวียงพะเยาวิทยาคม", "โรงเรียนแม่ลาววิทยาคม", "โรงเรียนจุนวิทยาคม", "โรงเรียนแม่ใจวิทยาคม", "โรงเรียนแม่ต๋ำวิทยาคม", "โรงเรียนแม่ใจ (ธีรวิทย์)", "โรงเรียนเทิงวิทยาคม", "โรงเรียนแม่ใสวิทยาคม", "โรงเรียนแม่ลาววิทยาคม"];
-            schools.forEach(school => {
-                const option = document.createElement('option');
-                option.value = school;
-                option.textContent = school;
-                editSchoolSelect.appendChild(option);
-            });
-            editSchoolSelect.value = rowData.school;
+            if (window.editAction === 'edit') {
+                showEditModal(window.editIndex);
+            } else if (window.editAction === 'delete') {
+                confirmDelete(window.editIndex);
+            }
+        }
 
-            // Populate position dropdown
-            const editPositionSelect = document.getElementById('editPosition');
-            editPositionSelect.innerHTML = '<option value="">เลือกตำแหน่ง</option>';
-            const positions = ["ครู", "หัวหน้าฝ่าย", "รองผู้อำนวยการ", "ผู้อำนวยการ", "ครูผู้ช่วย"];
-            positions.forEach(position => {
-                const option = document.createElement('option');
-                option.value = position;
-                option.textContent = position;
-                editPositionSelect.appendChild(option);
-            });
-            editPositionSelect.value = rowData.position;
+        // Show edit modal
+        function showEditModal(index) {
+            const item = allData[index];
+            
+            document.getElementById('editRowId').value = index;
+            document.getElementById('editFullName').value = item.fullName;
+            document.getElementById('editSchool').value = item.school;
+            document.getElementById('editPosition').value = item.position;
+            document.getElementById('editStatus').value = item.status;
+            
+            // Populate select options
+            populateEditSelects();
             
             const editModal = new bootstrap.Modal(document.getElementById('editModal'));
             editModal.show();
         }
 
-        function updateData() {
-            showLoading(true);
-            const rowIndex = document.getElementById('editRowId').value;
+        // Populate edit form selects
+        function populateEditSelects() {
+            const schoolSelect = document.getElementById('editSchool');
+            const positionSelect = document.getElementById('editPosition');
+            
+            // Copy options from main form
+            schoolSelect.innerHTML = document.getElementById('school').innerHTML;
+            positionSelect.innerHTML = document.getElementById('position').innerHTML;
+        }
+
+        // Update data
+        async function updateData() {
+            const index = document.getElementById('editRowId').value;
             const updatedData = {
                 fullName: document.getElementById('editFullName').value,
                 school: document.getElementById('editSchool').value,
@@ -1079,107 +1233,172 @@
                 status: document.getElementById('editStatus').value
             };
 
-            google.script.run
-                .withSuccessHandler(function(response) {
-                    showLoading(false);
-                    if (response.success) {
-                        Swal.fire('สำเร็จ', response.message, 'success');
-                        bootstrap.Modal.getInstance(document.getElementById('editModal')).hide();
-                        loadAllData(); // Reload all data after update
-                        loadRecentData();
-                        updateStatistics();
-                    } else {
-                        Swal.fire('ข้อผิดพลาด', response.message, 'error');
-                    }
-                })
-                .withFailureHandler(function(error) {
-                    showLoading(false);
-                    console.error('Error updating data:', error);
-                    Swal.fire('ข้อผิดพลาด', 'เกิดข้อผิดพลาดในการอัปเดตข้อมูล: ' + error.message, 'error');
-                })
-                .doPost({ action: 'update', index: rowIndex, data: updatedData });
+            try {
+                showLoading(true);
+                
+                const response = await fetch(CONFIG.SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify({
+                        action: 'update',
+                        index: parseInt(index),
+                        data: updatedData
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'อัปเดตสำเร็จ!',
+                        text: 'ข้อมูลได้รับการอัปเดตแล้ว',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    
+                    const editModal = bootstrap.Modal.getInstance(document.getElementById('editModal'));
+                    editModal.hide();
+                    
+                    await loadData();
+                    loadManagementData();
+                } else {
+                    throw new Error(result.message || 'เกิดข้อผิดพลาด');
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'เกิดข้อผิดพลาด!',
+                    text: error.message
+                });
+            } finally {
+                showLoading(false);
+            }
         }
 
-        function deleteData(rowIndex) {
+        // Confirm delete
+        function confirmDelete(index) {
+            const item = allData[index];
+            
             Swal.fire({
-                title: 'ยืนยันการลบ?',
-                text: "คุณต้องการลบข้อมูลนี้ใช่หรือไม่?",
+                title: 'ยืนยันการลบ',
+                text: `คุณต้องการลบข้อมูลของ ${item.fullName} หรือไม่?`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
-                cancelButtonColor: '#6c757d',
-                confirmButtonText: 'ใช่, ลบเลย!',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'ลบ',
                 cancelButtonText: 'ยกเลิก'
-            }).then((result) => {
+            }).then(async (result) => {
                 if (result.isConfirmed) {
-                    showLoading(true);
-                    google.script.run
-                        .withSuccessHandler(function(response) {
-                            showLoading(false);
-                            if (response.success) {
-                                Swal.fire('ลบแล้ว!', response.message, 'success');
-                                loadAllData(); // Reload all data after delete
-                                loadRecentData();
-                                updateStatistics();
-                            } else {
-                                Swal.fire('ข้อผิดพลาด', response.message, 'error');
-                            }
-                        })
-                        .withFailureHandler(function(error) {
-                            showLoading(false);
-                            console.error('Error deleting data:', error);
-                            Swal.fire('ข้อผิดพลาด', 'เกิดข้อผิดพลาดในการลบข้อมูล: ' + error.message, 'error');
-                        })
-                        .doPost({ action: 'delete', index: rowIndex });
+                    await performDelete(index);
                 }
             });
         }
 
-        function refreshData() {
-            loadAllData();
-            loadRecentData();
-            updateStatistics();
-            Swal.fire('รีเฟรชข้อมูล', 'ข้อมูลอัปเดตล่าสุดแล้ว', 'success');
+        // Perform delete
+        async function performDelete(index) {
+            try {
+                showLoading(true);
+                
+                const response = await fetch(CONFIG.SCRIPT_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify({
+                        action: 'delete',
+                        index: parseInt(index)
+                    })
+                });
+
+                const result = await response.json();
+                
+                if (result.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'ลบสำเร็จ!',
+                        text: 'ข้อมูลได้รับการลบแล้ว',
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                    
+                    await loadData();
+                    loadManagementData();
+                } else {
+                    throw new Error(result.message || 'เกิดข้อผิดพลาด');
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'เกิดข้อผิดพลาด!',
+                    text: error.message
+                });
+            } finally {
+                showLoading(false);
+            }
         }
 
+        // Refresh data
+        async function refreshData() {
+            showLoading(true);
+            await loadData();
+            loadManagementData();
+            showLoading(false);
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'รีเฟรชสำเร็จ!',
+                text: 'ข้อมูลได้รับการอัปเดตแล้ว',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+
+        // Print report
         function printReport() {
+            const printWindow = window.open('', '_blank');
             const printContent = `
+                <!DOCTYPE html>
                 <html>
                 <head>
-                    <title>รายงานข้อมูล</title>
-                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <title>รายงานข้อมูลประวัติย่อและภาพประทับใจ</title>
                     <style>
-                        body { font-family: 'K2D', sans-serif; margin: 20px; }
+                        body { font-family: 'K2D', sans-serif; }
                         table { width: 100%; border-collapse: collapse; }
-                        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-                        th { background-color: #f2f2f2; }
-                        .preview-image { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
+                        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+                        th { background-color: #4CAF50; color: white; }
+                        .header { text-align: center; margin-bottom: 20px; }
                     </style>
                 </head>
                 <body>
-                    <h2 class="text-center mb-4">รายงานข้อมูลทั้งหมด</h2>
-                    <table class="table table-bordered table-striped">
+                    <div class="header">
+                        <h2>รายงานข้อมูลประวัติย่อและภาพประทับใจ</h2>
+                        <p>สำนักงานเขตพื้นที่การศึกษามัธยมศึกษาพะเยา</p>
+                        <p>วันที่พิมพ์: ${new Date().toLocaleDateString('th-TH')}</p>
+                    </div>
+                    <table>
                         <thead>
                             <tr>
                                 <th>ลำดับ</th>
-                                <th>วันที่</th>
+                                <th>วันที่ส่ง</th>
                                 <th>ชื่อ-สกุล</th>
                                 <th>โรงเรียน</th>
                                 <th>ตำแหน่ง</th>
                                 <th>สถานะ</th>
-                                <th>ภาพตัวอย่าง</th>
                             </tr>
                         </thead>
                         <tbody>
-                            ${allTableData.map((item, index) => `
+                            ${allData.map((item, index) => `
                                 <tr>
                                     <td>${index + 1}</td>
-                                    <td>${item.submitDate}</td>
+                                    <td>${new Date(item.submitDate).toLocaleDateString('th-TH')}</td>
                                     <td>${item.fullName}</td>
                                     <td>${item.school}</td>
                                     <td>${item.position}</td>
                                     <td>${item.status}</td>
-                                    <td>${item.firstImage ? `<img src="${item.firstImage}" class="preview-image" alt="ภาพตัวอย่าง">` : 'ไม่มีภาพ'}</td>
                                 </tr>
                             `).join('')}
                         </tbody>
@@ -1188,7 +1407,6 @@
                 </html>
             `;
             
-            const printWindow = window.open('', '_blank');
             printWindow.document.write(printContent);
             printWindow.document.close();
             printWindow.print();
@@ -1199,38 +1417,6 @@
             const overlay = document.getElementById('loadingOverlay');
             overlay.style.display = show ? 'flex' : 'none';
         }
-
-        // Initial loads on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            showPdpaModal(); // Show PDPA modal on load
-            loadRecentData();
-            updateStatistics();
-
-            // Handle tab changes
-            const mainTabs = document.getElementById('mainTabs');
-            mainTabs.addEventListener('shown.bs.tab', function (event) {
-                if (event.target.id === 'dashboard-tab') {
-                    loadRecentData();
-                    updateStatistics();
-                } else if (event.target.id === 'manage-tab') {
-                    // DataTables will be loaded after admin verification
-                }
-            });
-
-            // Dashboard Search functionality (client-side filtering)
-            document.getElementById('dashboardSearch').addEventListener('keyup', function() {
-                const searchValue = this.value.toLowerCase();
-                const recentRows = document.querySelectorAll('#recentDataBody tr');
-                recentRows.forEach(row => {
-                    const textContent = row.textContent.toLowerCase();
-                    if (textContent.includes(searchValue)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            });
-        });
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96656545954ac691',t:'MTc1MzcxNjM5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
