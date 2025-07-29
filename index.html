@@ -310,6 +310,13 @@
       color: white;
     }
     
+    .thumbnail-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    
     .pdpa-modal {
       position: fixed;
       top: 0;
@@ -543,6 +550,7 @@
             <th>ตำแหน่ง</th>
             <th>โรงเรียน</th>
             <th>สถานะ</th>
+            <th>ภาพย่อ</th>
           </tr>
         </thead>
         <tbody>
@@ -562,6 +570,7 @@
             <th>ตำแหน่ง</th>
             <th>โรงเรียน</th>
             <th>สถานะ</th>
+            <th>ภาพย่อ</th>
             <th>การจัดการ</th>
           </tr>
         </thead>
@@ -993,11 +1002,16 @@
                     <td>${submission.position || '-'}</td>
                     <td>${submission.school || '-'}</td>
                     <td>${submission.status || '-'}</td>
+                    <td>${
+                      submission.thumbnail 
+                        ? `<img src="${submission.thumbnail}" class="thumbnail-img" alt="ภาพย่อ">` 
+                        : '-'
+                    }</td>
                   `;
                   recentTableBody.appendChild(row);
                 });
               } else {
-                recentTableBody.innerHTML = '<tr><td colspan="5" style="text-align: center;">ไม่มีข้อมูล</td></tr>';
+                recentTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">ไม่มีข้อมูล</td></tr>';
               }
               
               // Create charts if data exists
@@ -1017,20 +1031,23 @@
       // Create charts
       function createCharts(chartData) {
         try {
-          // School chart
+          // School chart (bar chart)
           const schoolCtx = document.getElementById('schoolChart').getContext('2d');
           if (window.schoolChart) {
             window.schoolChart.destroy();
           }
           
           if (chartData.schools && chartData.schools.length > 0) {
+            // เรียงลำดับข้อมูลโรงเรียนตามจำนวนจากมากไปน้อย
+            const sortedSchools = [...chartData.schools].sort((a, b) => b.count - a.count);
+            
             window.schoolChart = new Chart(schoolCtx, {
               type: 'bar',
               data: {
-                labels: chartData.schools.map(item => item.school || 'ไม่ระบุ'),
+                labels: sortedSchools.map(item => item.school || 'ไม่ระบุ'),
                 datasets: [{
                   label: 'จำนวนการส่ง',
-                  data: chartData.schools.map(item => item.count || 0),
+                  data: sortedSchools.map(item => item.count || 0),
                   backgroundColor: '#2E7D32',
                   borderColor: '#1B5E20',
                   borderWidth: 1
@@ -1040,8 +1057,21 @@
                 responsive: true,
                 scales: {
                   y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                      stepSize: 1
+                    }
+                  },
+                  x: {
+                    ticks: {
+                      autoSkip: false,
+                      maxRotation: 45,
+                      minRotation: 45
+                    }
                   }
+                },
+                animation: {
+                  duration: 1000
                 }
               }
             });
@@ -1049,7 +1079,7 @@
             schoolCtx.canvas.parentNode.innerHTML = '<p>ไม่มีข้อมูลสถิติตามโรงเรียน</p>';
           }
           
-          // Position chart
+          // Position chart (pie chart)
           const positionCtx = document.getElementById('positionChart').getContext('2d');
           if (window.positionChart) {
             window.positionChart.destroy();
@@ -1075,7 +1105,26 @@
                 }]
               },
               options: {
-                responsive: true
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'right',
+                  },
+                  tooltip: {
+                    callbacks: {
+                      label: function(context) {
+                        const label = context.label || '';
+                        const value = context.raw || 0;
+                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                        const percentage = Math.round((value / total) * 100);
+                        return `${label}: ${value} (${percentage}%)`;
+                      }
+                    }
+                  }
+                },
+                animation: {
+                  duration: 1000
+                }
               }
             });
           } else {
@@ -1113,6 +1162,11 @@
                     <td>${submission.position || '-'}</td>
                     <td>${submission.school || '-'}</td>
                     <td>${submission.status || '-'}</td>
+                    <td>${
+                      submission.thumbnail 
+                        ? `<img src="${submission.thumbnail}" class="thumbnail-img" alt="ภาพย่อ">` 
+                        : '-'
+                    }</td>
                     <td>
                       <button class="action-btn edit-btn" data-id="${submission.id || ''}"><i class="fas fa-edit"></i></button>
                       <button class="action-btn delete-btn" data-id="${submission.id || ''}"><i class="fas fa-trash"></i></button>
@@ -1136,7 +1190,7 @@
                   });
                 });
               } else {
-                tableBody.innerHTML = '<tr><td colspan="6" style="text-align: center;">ไม่มีข้อมูล</td></tr>';
+                tableBody.innerHTML = '<tr><td colspan="7" style="text-align: center;">ไม่มีข้อมูล</td></tr>';
               }
             } else {
               showError('ไม่สามารถโหลดข้อมูลได้: ' + (data ? data.message : 'ไม่มีข้อมูล'));
@@ -1183,13 +1237,23 @@
                       <option value="ตรวจสอบแล้ว" ${submission.status === 'ตรวจสอบแล้ว' ? 'selected' : ''}>ตรวจสอบแล้ว</option>
                     </select>
                   </div>
+                  <div class="form-group" style="margin-top: 15px;">
+                    <label for="editPassword">รหัสผ่านการจัดการ</label>
+                    <input type="password" id="editPassword" class="swal2-input" placeholder="กรอกรหัสผ่าน" required>
+                  </div>
                 `,
                 showCancelButton: true,
                 confirmButtonText: 'บันทึก',
                 cancelButtonText: 'ยกเลิก',
                 preConfirm: () => {
+                  const password = document.getElementById('editPassword').value;
+                  if (!password) {
+                    Swal.showValidationMessage('กรุณากรอกรหัสผ่าน');
+                    return false;
+                  }
                   return {
-                    status: document.getElementById('editStatus').value
+                    status: document.getElementById('editStatus').value,
+                    password: password
                   };
                 }
               }).then(result => {
@@ -1219,7 +1283,8 @@
           body: JSON.stringify({
             action: 'updateSubmission',
             id: id,
-            status: data.status
+            status: data.status,
+            password: data.password
           })
         })
         .then(response => {
@@ -1258,9 +1323,24 @@
           confirmButtonColor: '#2E7D32',
           cancelButtonColor: '#d33',
           confirmButtonText: 'ใช่, ลบข้อมูล!',
-          cancelButtonText: 'ยกเลิก'
+          cancelButtonText: 'ยกเลิก',
+          html: `
+            <div class="form-group" style="margin-top: 15px;">
+              <label for="deletePassword">รหัสผ่านการจัดการ</label>
+              <input type="password" id="deletePassword" class="swal2-input" placeholder="กรอกรหัสผ่าน" required>
+            </div>
+          `,
+          preConfirm: () => {
+            const password = document.getElementById('deletePassword').value;
+            if (!password) {
+              Swal.showValidationMessage('กรุณากรอกรหัสผ่าน');
+              return false;
+            }
+            return password;
+          }
         }).then((result) => {
           if (result.isConfirmed) {
+            const password = result.value;
             showLoading();
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec';
             
@@ -1271,7 +1351,8 @@
               },
               body: JSON.stringify({
                 action: 'deleteSubmission',
-                id: id
+                id: id,
+                password: password
               })
             })
             .then(response => {
