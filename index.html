@@ -14,7 +14,10 @@
       --white: #FFFFFF;
       --text-color: #333333;
       --border-color: #2E7D32;
-      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --accent-color: #4CAF50;
+      --error-color: #f44336;
+      --warning-color: #ff9800;
+      --info-color: #2196F3;
     }
     
     * {
@@ -40,28 +43,21 @@
       background-color: var(--white);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: var(--box-shadow);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       margin-bottom: 20px;
       border: 2px solid var(--border-color);
       text-align: center;
-      position: relative;
     }
     
     .logo {
       width: 100px;
       height: auto;
       margin-bottom: 10px;
-      transition: transform 0.3s ease;
-    }
-    
-    .logo:hover {
-      transform: scale(1.05);
     }
     
     h1 {
       color: var(--primary-color);
       font-size: 24px;
-      margin-bottom: 10px;
     }
     
     .tabs {
@@ -70,7 +66,7 @@
       background-color: var(--white);
       border-radius: 10px;
       overflow: hidden;
-      box-shadow: var(--box-shadow);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid var(--border-color);
     }
     
@@ -81,8 +77,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 500;
-      position: relative;
-      overflow: hidden;
     }
     
     .tab:hover {
@@ -94,33 +88,13 @@
       color: var(--white);
     }
     
-    .tab.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
-      background-color: var(--white);
-    }
-    
-    .tab i {
-      margin-right: 8px;
-    }
-    
     .tab-content {
       display: none;
       background-color: var(--white);
-      padding: 25px;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: var(--box-shadow);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid var(--border-color);
-      animation: fadeIn 0.5s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     
     .tab-content.active {
@@ -128,102 +102,69 @@
     }
     
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     
     label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-weight: 500;
-      color: var(--primary-color);
     }
     
     input, select, textarea {
       width: 100%;
-      padding: 12px;
+      padding: 10px;
       border: 1px solid #ddd;
-      border-radius: 8px;
+      border-radius: 5px;
       font-size: 16px;
-      transition: all 0.3s ease;
     }
     
     input:focus, select:focus, textarea:focus {
       outline: none;
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
     }
     
     .btn {
       background-color: var(--primary-color);
       color: var(--white);
       border: none;
-      padding: 12px 24px;
-      border-radius: 8px;
+      padding: 10px 20px;
+      border-radius: 5px;
       cursor: pointer;
       font-size: 16px;
-      font-weight: 500;
-      transition: all 0.3s;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .btn i {
-      margin-right: 8px;
+      transition: background-color 0.3s;
     }
     
     .btn:hover {
       background-color: #1B5E20;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    
-    .btn:active {
-      transform: translateY(0);
     }
     
     .file-upload {
       border: 2px dashed #ddd;
-      padding: 30px;
+      padding: 20px;
       text-align: center;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .file-upload:hover, .file-upload.active {
-      border-color: var(--primary-color);
-      background-color: rgba(46, 125, 50, 0.05);
-    }
-    
-    .file-upload i {
-      font-size: 48px;
-      color: var(--primary-color);
+      border-radius: 5px;
       margin-bottom: 15px;
+    }
+    
+    .file-upload.active {
+      border-color: var(--primary-color);
     }
     
     .file-preview {
       display: flex;
       flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: 15px;
     }
     
     .file-preview-item {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       position: relative;
       border: 1px solid #ddd;
-      border-radius: 8px;
+      border-radius: 5px;
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .file-preview-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
     }
     
     .file-preview-item img {
@@ -236,44 +177,36 @@
       position: absolute;
       top: 5px;
       right: 5px;
-      background-color: rgba(255, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.5);
       color: white;
       border: none;
       border-radius: 50%;
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .file-preview-item .remove-file:hover {
-      background-color: rgba(255, 0, 0, 1);
-      transform: scale(1.1);
     }
     
     .progress-container {
       width: 100%;
       background-color: #f1f1f1;
-      border-radius: 8px;
-      margin: 20px 0;
+      border-radius: 5px;
+      margin: 15px 0;
       display: none;
-      overflow: hidden;
     }
     
     .progress-bar {
-      height: 24px;
+      height: 20px;
       background-color: var(--primary-color);
-      border-radius: 8px;
+      border-radius: 5px;
       width: 0%;
-      transition: width 0.5s ease;
+      transition: width 0.3s;
       text-align: center;
       color: white;
-      font-size: 14px;
-      line-height: 24px;
-      font-weight: 500;
+      font-size: 12px;
+      line-height: 20px;
     }
     
     .loading-overlay {
@@ -282,9 +215,8 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
+      background-color: rgba(0, 0, 0, 0.5);
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       z-index: 1000;
@@ -295,16 +227,9 @@
       border: 5px solid #f3f3f3;
       border-top: 5px solid var(--primary-color);
       border-radius: 50%;
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       animation: spin 1s linear infinite;
-      margin-bottom: 20px;
-    }
-    
-    .loading-text {
-      color: white;
-      font-size: 18px;
-      margin-top: 15px;
     }
     
     @keyframes spin {
@@ -316,78 +241,61 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     
     .stat-card {
       background-color: var(--white);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: var(--box-shadow);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid var(--border-color);
       text-align: center;
-      transition: all 0.3s ease;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
     
     .stat-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
     
     .stat-card h3 {
       color: var(--primary-color);
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       font-size: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    
-    .stat-card h3 i {
-      margin-right: 10px;
-      font-size: 20px;
     }
     
     .stat-card .stat-value {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: bold;
-      color: var(--text-color);
-      margin: 10px 0;
+      color: var(--accent-color);
     }
     
-    .stat-card .stat-description {
-      font-size: 14px;
-      color: #666;
+    .stat-card .stat-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
     }
     
     .chart-container {
       background-color: var(--white);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: var(--box-shadow);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       border: 2px solid var(--border-color);
-      margin-bottom: 30px;
-      position: relative;
+      margin-bottom: 20px;
     }
     
     .chart-container h3 {
       color: var(--primary-color);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .chart-container h3 i {
-      margin-right: 10px;
+      margin-bottom: 15px;
+      text-align: center;
     }
     
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 30px;
-      box-shadow: var(--box-shadow);
-      border-radius: 8px;
-      overflow: hidden;
+      margin-bottom: 20px;
     }
     
     table, th, td {
@@ -395,74 +303,47 @@
     }
     
     th, td {
-      padding: 15px;
+      padding: 12px;
       text-align: left;
     }
     
     th {
       background-color: var(--primary-color);
       color: var(--white);
-      font-weight: 500;
     }
     
     tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-    
-    tr:hover {
-      background-color: #f1f1f1;
+      background-color: #f2f2f2;
     }
     
     .action-btn {
-      padding: 8px 12px;
+      padding: 5px 10px;
       margin-right: 5px;
       border: none;
-      border-radius: 6px;
+      border-radius: 3px;
       cursor: pointer;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      transition: opacity 0.3s;
     }
     
-    .action-btn i {
-      margin-right: 5px;
+    .action-btn:hover {
+      opacity: 0.8;
     }
     
     .edit-btn {
-      background-color: #2196F3;
+      background-color: var(--info-color);
       color: white;
-    }
-    
-    .edit-btn:hover {
-      background-color: #0b7dda;
-      transform: translateY(-2px);
     }
     
     .delete-btn {
-      background-color: #f44336;
+      background-color: var(--error-color);
       color: white;
     }
     
-    .delete-btn:hover {
-      background-color: #da190b;
-      transform: translateY(-2px);
-    }
-    
     .thumbnail-img {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       object-fit: cover;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      transition: all 0.3s ease;
-    }
-    
-    .thumbnail-img:hover {
-      transform: scale(1.5);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      z-index: 10;
-      position: relative;
+      border-radius: 5px;
     }
     
     .pdpa-modal {
@@ -471,142 +352,41 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(0, 0, 0, 0.7);
       display: flex;
       align-items: center;
       justify-content: center;
-      z-index: 2000;
+      z-index: 1000;
     }
     
     .pdpa-content {
       background-color: var(--white);
       padding: 30px;
-      border-radius: 12px;
-      max-width: 700px;
+      border-radius: 10px;
+      max-width: 600px;
       max-height: 80vh;
       overflow-y: auto;
-      border: 3px solid var(--border-color);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      animation: modalFadeIn 0.4s ease;
-    }
-    
-    @keyframes modalFadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      border: 2px solid var(--border-color);
     }
     
     .pdpa-content h2 {
       color: var(--primary-color);
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       text-align: center;
-      font-size: 24px;
     }
     
     .pdpa-content p {
       margin-bottom: 15px;
-      line-height: 1.7;
-    }
-    
-    .pdpa-content ul {
-      margin-bottom: 20px;
-      padding-left: 20px;
-    }
-    
-    .pdpa-content li {
-      margin-bottom: 8px;
     }
     
     .pdpa-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 25px;
+      gap: 15px;
+      margin-top: 20px;
     }
     
-    .iframe-container {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: var(--box-shadow);
-      border: 2px solid var(--border-color);
-      margin-bottom: 30px;
-      position: relative;
-    }
-    
-    .iframe-container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 10px;
-      background: linear-gradient(90deg, #2E7D32, #4CAF50, #81C784, #4CAF50, #2E7D32);
-      z-index: 1;
-    }
-    
-    .iframe-container iframe {
-      border: none;
-      width: 100%;
-      height: 1500px;
-      display: block;
-    }
-    
-    .usage-stats {
-      background-color: var(--white);
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: var(--box-shadow);
-      border: 2px solid var(--border-color);
-      margin-top: 30px;
-    }
-    
-    .usage-stats h3 {
-      color: var(--primary-color);
-      margin-bottom: 20px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .usage-stats h3 i {
-      margin-right: 10px;
-    }
-    
-    .usage-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-    
-    .usage-stat-item {
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      padding: 15px;
-      display: flex;
-      align-items: center;
-    }
-    
-    .usage-stat-icon {
-      width: 50px;
-      height: 50px;
-      background-color: var(--primary-color);
-      color: white;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 15px;
-      font-size: 20px;
-    }
-    
-    .usage-stat-info h4 {
-      margin-bottom: 5px;
-      color: var(--text-color);
-    }
-    
-    .usage-stat-info p {
-      color: #666;
-      font-size: 14px;
-    }
-    
+    /* Print styles */
     @media print {
       body * {
         visibility: hidden;
@@ -620,18 +400,97 @@
         top: 0;
         width: 100%;
         height: auto;
-        background-color: white;
-        padding: 20px;
+        border: none;
+        box-shadow: none;
       }
-      .tabs, .btn {
+      .tabs, .tab:not(.active), .action-btn {
         display: none !important;
       }
       table {
-        box-shadow: none;
+        width: 100%;
+        border-collapse: collapse;
       }
-      tr {
-        page-break-inside: avoid;
+      th, td {
+        border: 1px solid #000;
+        padding: 8px;
       }
+      th {
+        background-color: #f2f2f2 !important;
+        color: #000 !important;
+      }
+    }
+    
+    /* Tab 4 - Iframe styles */
+    .iframe-container {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--border-color);
+      position: relative;
+    }
+    
+    .iframe-container iframe {
+      width: 100%;
+      height: 1500px;
+      border: none;
+    }
+    
+    .iframe-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .iframe-header h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    /* Analytics section */
+    .analytics-section {
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border: 2px solid var(--border-color);
+    }
+    
+    .analytics-section h2 {
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .analytics-card {
+      background-color: var(--secondary-color);
+      border-radius: 8px;
+      padding: 15px;
+      border: 1px solid var(--border-color);
+    }
+    
+    .analytics-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
     
     @media (max-width: 768px) {
@@ -640,30 +499,11 @@
       }
       
       .tab {
-        padding: 12px;
-      }
-      
-      .stats-container, .usage-stats-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .chart-container {
-        padding: 15px;
-      }
-      
-      th, td {
         padding: 10px;
-        font-size: 14px;
       }
       
-      .pdpa-content {
-        padding: 20px;
-        margin: 20px;
-      }
-      
-      .pdpa-buttons {
-        flex-direction: column;
-        gap: 10px;
+      .stats-container, .analytics-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -673,12 +513,12 @@
   <div class="pdpa-modal" id="pdpaModal">
     <div class="pdpa-content">
       <center>
-        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgP7650FTCSeNQU8DBnHv7w0lL7CxVLmv_vLJ4tE9vcPbILI9KNeTqAUnmPg6ELY-qyt5BLKSAuaQILMr6gyYiWqF8HToyRnYiks86ESHapld6XUGvp0wGfuGYyvra18zjhZN1afCwQ66ZvMxxaoS3ACz0zbe6d07GuYNWd7xFGPZZjI5tTLSiyOkifsqAh/s1600/sesapylogo.png" alt="Logo" class="logo">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgP7650FTCSeNQU8DBnHv7w0lL7CxVLmv_vLJ4tE9vcPbILI9KNeTqAUnmPg6ELY-qyt5BLKSAuaQILMr6gyYiWqF8HToyRnYiks86ESHapld6XUGvp0wGfuGYyvra18zjhZN1afCwQ66ZvMxxaoS3ACz0zbe6d07GuYNWd7xFGPZZjI5tTLSiyOkifsqAh/s1600/sesapylogo.png" alt="Logo" class="logo">
       </center>
       <h2><i class="fas fa-shield-alt"></i> นโยบายความเป็นส่วนตัว</h2>
       <p>ระบบส่งข้อมูลประวัติย่อ และรูปประทับใจ นี้ให้ความสำคัญกับการคุ้มครองข้อมูลส่วนบุคคลของคุณตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA)</p>
       <p>เราเก็บรวบรวมข้อมูลส่วนบุคคลของคุณเพื่อวัตถุประสงค์ในการให้บริการและพัฒนาระบบเท่านั้น โดยจะไม่เปิดเผยข้อมูลให้กับบุคคลที่สามโดยไม่ได้รับความยินยอมจากคุณ</p>
-      <p><strong>ข้อมูลที่เรารวบรวมอาจรวมถึง:</strong></p>
+      <p>ข้อมูลที่เรารวบรวมอาจรวมถึง:</p>
       <ul>
         <li><i class="fas fa-user"></i> ชื่อ-นามสกุล</li>
         <li><i class="fas fa-briefcase"></i> ตำแหน่งงาน</li>
@@ -687,8 +527,8 @@
       </ul>
       <p><i class="fas fa-info-circle"></i> คุณมีสิทธิ์ขอเข้าถึง แก้ไข ลบ หรือเพิกถอนความยินยอมในการใช้ข้อมูลของคุณได้ทุกเมื่อ</p>
       <div class="pdpa-buttons">
-        <button class="btn" id="pdpaAgree"><i class="fas fa-check-circle"></i> ยินยอม</button>
-        <button class="btn" style="background-color: #f44336;" id="pdpaDisagree"><i class="fas fa-times-circle"></i> ยกเลิก</button>
+        <button class="btn" id="pdpaAgree"><i class="fas fa-check"></i> ยินยอม</button>
+        <button class="btn" style="background-color: #f44336;" id="pdpaDisagree"><i class="fas fa-times"></i> ยกเลิก</button>
       </div>
     </div>
   </div>
@@ -696,14 +536,12 @@
   <!-- Loading Overlay -->
   <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-spinner"></div>
-    <div class="loading-text">กำลังประมวลผล...</div>
   </div>
 
   <div class="container">
     <header>
       <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgP7650FTCSeNQU8DBnHv7w0lL7CxVLmv_vLJ4tE9vcPbILI9KNeTqAUnmPg6ELY-qyt5BLKSAuaQILMr6gyYiWqF8HToyRnYiks86ESHapld6XUGvp0wGfuGYyvra18zjhZN1afCwQ66ZvMxxaoS3ACz0zbe6d07GuYNWd7xFGPZZjI5tTLSiyOkifsqAh/s1600/sesapylogo.png" alt="Logo" class="logo"> 
-      <h1>ระบบส่งข้อมูลประวัติย่อ และรูปประทับใจ</h1>
-      <p><i class="fas fa-info-circle"></i> ระบบสำหรับส่งข้อมูลประวัติและรูปภาพสำหรับบุคลากรทางการศึกษา</p>
+      <h1><i class="fas fa-file-upload"></i> ระบบส่งข้อมูลประวัติย่อ และรูปประทับใจ</h1>
     </header>
     
     <div class="tabs">
@@ -722,12 +560,12 @@
         </div>
         
         <div class="form-group">
-          <label for="fullName"><i class="far fa-user"></i> ชื่อ-สกุล</label>
+          <label for="fullName"><i class="fas fa-user"></i> ชื่อ-สกุล</label>
           <input type="text" id="fullName" name="fullName" required>
         </div>
         
         <div class="form-group">
-          <label for="position"><i class="fas fa-user-tie"></i> ตำแหน่ง</label>
+          <label for="position"><i class="fas fa-briefcase"></i> ตำแหน่ง</label>
           <select id="position" name="position" required>
             <option value="">-- กรุณาเลือกตำแหน่ง --</option>
             <option value="ครู">ครู</option>
@@ -772,7 +610,7 @@
         </div>
         
         <div class="form-group">
-          <label for="email"><i class="far fa-envelope"></i> อีเมลผู้ส่ง</label>
+          <label for="email"><i class="fas fa-envelope"></i> อีเมลผู้ส่ง</label>
           <input type="email" id="email" name="email" required>
         </div>
         
@@ -782,7 +620,7 @@
         </div>
         
         <div class="form-group">
-          <label for="additionalInfo"><i class="far fa-comment-dots"></i> ข้อความเพิ่มเติม</label>
+          <label for="additionalInfo"><i class="fas fa-comment"></i> ข้อความเพิ่มเติม</label>
           <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
         </div>
         
@@ -797,9 +635,8 @@
         <div class="form-group">
           <label><i class="fas fa-file-upload"></i> ไฟล์งาน (PDF, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG)</label>
           <div class="file-upload" id="fileUploadArea">
-            <i class="fas fa-cloud-upload-alt"></i>
-            <p>ลากไฟล์มาวางที่นี่หรือคลิกเพื่อเลือกไฟล์</p>
-            <p>รองรับสูงสุด 15 ไฟล์ (ขนาดรวมไม่เกิน 20MB)</p>
+            <p><i class="fas fa-cloud-upload-alt"></i> ลากไฟล์มาวางที่นี่หรือคลิกเพื่อเลือกไฟล์</p>
+            <p><i class="fas fa-info-circle"></i> รองรับสูงสุด 15 ไฟล์ (ขนาดรวมไม่เกิน 20MB)</p>
             <input type="file" id="fileInput" multiple style="display: none;" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png">
           </div>
           <div class="file-preview" id="filePreview"></div>
@@ -817,19 +654,19 @@
     <div class="tab-content" id="tab2">
       <div class="stats-container">
         <div class="stat-card">
-          <h3><i class="fas fa-users"></i> จำนวนผู้อัปโหลด</h3>
+          <div class="stat-icon"><i class="fas fa-users"></i></div>
+          <h3>จำนวนผู้อัปโหลด</h3>
           <div class="stat-value" id="totalUploaders">0</div>
-          <div class="stat-description">จำนวนผู้ใช้ที่ส่งข้อมูล</div>
         </div>
         <div class="stat-card">
-          <h3><i class="fas fa-file"></i> จำนวนไฟล์สื่อ</h3>
+          <div class="stat-icon"><i class="fas fa-file"></i></div>
+          <h3>จำนวนไฟล์สื่อ</h3>
           <div class="stat-value" id="totalFiles">0</div>
-          <div class="stat-description">ไฟล์ทั้งหมดที่ถูกอัปโหลด</div>
         </div>
         <div class="stat-card">
-          <h3><i class="fas fa-comment"></i> จำนวนข้อความ</h3>
+          <div class="stat-icon"><i class="fas fa-comments"></i></div>
+          <h3>จำนวนข้อความ</h3>
           <div class="stat-value" id="totalMessages">0</div>
-          <div class="stat-description">ข้อความเพิ่มเติมทั้งหมด</div>
         </div>
       </div>
       
@@ -843,21 +680,16 @@
         <canvas id="positionChart"></canvas>
       </div>
       
-      <div class="chart-container">
-        <h3><i class="fas fa-check-circle"></i> สถิติสถานะการตรวจสอบ</h3>
-        <canvas id="statusChart"></canvas>
-      </div>
-      
       <h3><i class="fas fa-history"></i> รายการล่าสุด</h3>
       <table id="recentSubmissions">
         <thead>
           <tr>
             <th><i class="far fa-calendar-alt"></i> วันที่ส่ง</th>
-            <th><i class="far fa-user"></i> ชื่อ-สกุล</th>
-            <th><i class="fas fa-user-tie"></i> ตำแหน่ง</th>
+            <th><i class="fas fa-user"></i> ชื่อ-สกุล</th>
+            <th><i class="fas fa-briefcase"></i> ตำแหน่ง</th>
             <th><i class="fas fa-school"></i> โรงเรียน</th>
             <th><i class="fas fa-check-circle"></i> สถานะ</th>
-            <th><i class="far fa-image"></i> ภาพย่อ</th>
+            <th><i class="fas fa-image"></i> ภาพย่อ</th>
           </tr>
         </thead>
         <tbody>
@@ -868,16 +700,16 @@
     
     <!-- Tab 3: จัดการข้อมูล -->
     <div class="tab-content" id="tab3">
-      <h3><i class="fas fa-database"></i> ข้อมูลผู้ส่ง</h3>
+      <h3><i class="fas fa-table"></i> ข้อมูลผู้ส่ง</h3>
       <table id="dataTable">
         <thead>
           <tr>
             <th><i class="far fa-calendar-alt"></i> วันที่ส่ง</th>
-            <th><i class="far fa-user"></i> ชื่อ-สกุล</th>
-            <th><i class="fas fa-user-tie"></i> ตำแหน่ง</th>
+            <th><i class="fas fa-user"></i> ชื่อ-สกุล</th>
+            <th><i class="fas fa-briefcase"></i> ตำแหน่ง</th>
             <th><i class="fas fa-school"></i> โรงเรียน</th>
             <th><i class="fas fa-check-circle"></i> สถานะ</th>
-            <th><i class="far fa-image"></i> ภาพย่อ</th>
+            <th><i class="fas fa-image"></i> ภาพย่อ</th>
             <th><i class="fas fa-cog"></i> การจัดการ</th>
           </tr>
         </thead>
@@ -888,30 +720,42 @@
       
       <div style="margin-top: 20px;">
         <button class="btn" id="printReportBtn"><i class="fas fa-print"></i> พิมพ์รายงาน</button>
-        <button class="btn" id="exportExcelBtn" style="background-color: #217346;"><i class="fas fa-file-excel"></i> ส่งออก Excel</button>
       </div>
     </div>
     
     <!-- Tab 4: ตรวจสอบข้อมูล -->
     <div class="tab-content" id="tab4">
-      <h3><i class="fas fa-images"></i> ข้อมูลผู้ส่ง</h3>
+      <div class="iframe-header">
+        <h3><i class="fas fa-images"></i> ข้อมูลผู้ส่ง</h3>
+        <button class="btn" id="refreshIframeBtn"><i class="fas fa-sync-alt"></i> รีเฟรชข้อมูล</button>
+      </div>
       <div class="iframe-container">
-        <iframe src="https://developmentsesapy.github.io/Retireeinfo/show.html"></iframe>
+        <iframe src="https://developmentsesapy.github.io/Retireeinfo/show.html" id="dataIframe"></iframe>
       </div>
     </div>
     
-    <!-- Usage Statistics -->
-    <div class="usage-stats">
-      <h3><i class="fas fa-chart-line"></i> สถิติการใช้งานระบบ</h3>
-      <div class="usage-stats-grid" id="usageStats">
-        <!-- Will be populated by JavaScript -->
+    <!-- Analytics Section -->
+    <div class="analytics-section">
+      <h2><i class="fas fa-chart-line"></i> สถิติการใช้งานระบบ</h2>
+      <div class="analytics-grid">
+        <div class="analytics-card">
+          <h3><i class="fas fa-calendar-day"></i> การใช้งานรายวัน</h3>
+          <canvas id="dailyUsageChart"></canvas>
+        </div>
+        <div class="analytics-card">
+          <h3><i class="fas fa-tasks"></i> ประเภทการใช้งาน</h3>
+          <canvas id="actionTypeChart"></canvas>
+        </div>
+        <div class="analytics-card">
+          <h3><i class="fas fa-exchange-alt"></i> วิธีการใช้งาน</h3>
+          <canvas id="methodTypeChart"></canvas>
+        </div>
       </div>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
     // PDPA Modal
     document.addEventListener('DOMContentLoaded', function() {
@@ -959,14 +803,14 @@
           const tabId = this.getAttribute('data-tab');
           document.getElementById(tabId).classList.add('active');
           
-          // Load data when switching to specific tabs
+          // Load data when switching to stats or management tabs
           if (tabId === 'tab2') {
             loadStatistics();
+            loadAnalytics();
           } else if (tabId === 'tab3') {
             loadDataTable();
           } else if (tabId === 'tab4') {
-            // Refresh iframe when tab is clicked
-            document.querySelector('#tab4 iframe').src = document.querySelector('#tab4 iframe').src;
+            refreshIframe();
           }
         });
       });
@@ -1259,9 +1103,7 @@
             Swal.fire({
               title: 'สำเร็จ!',
               text: 'ข้อมูลและไฟล์ถูกส่งเรียบร้อยแล้ว',
-              icon: 'success',
-              timer: 2000,
-              timerProgressBar: true
+              icon: 'success'
             }).then(() => {
               // Reset form
               uploadForm.reset();
@@ -1274,6 +1116,7 @@
               // Reload statistics if on that tab
               if (document.getElementById('tab2').classList.contains('active')) {
                 loadStatistics();
+                loadAnalytics();
               }
               
               // Reload data table if on that tab
@@ -1282,26 +1125,18 @@
               }
             });
           } else {
-            Swal.fire({
-              title: 'ข้อผิดพลาด',
-              text: data.message || 'เกิดข้อผิดพลาดในการส่งข้อมูล',
-              icon: 'error'
-            });
+            showError(data ? data.message : 'เกิดข้อผิดพลาดในการส่งข้อมูล');
           }
         })
         .catch(error => {
           loadingOverlay.style.display = 'none';
-          Swal.fire({
-            title: 'ข้อผิดพลาด',
-            text: 'เกิดข้อผิดพลาดในการเชื่อมต่อ: ' + error.message,
-            icon: 'error'
-          });
+          showError('เกิดข้อผิดพลาดในการเชื่อมต่อ: ' + error.message);
         });
       }
       
       // Load statistics
       function loadStatistics() {
-        showLoading('กำลังโหลดสถิติ...');
+        showLoading();
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec?action=getStats';
         
         fetch(SCRIPT_URL)
@@ -1358,6 +1193,32 @@
           });
       }
       
+      // Load analytics data
+      function loadAnalytics() {
+        showLoading();
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec?action=getAnalytics';
+        
+        fetch(SCRIPT_URL)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            hideLoading();
+            if (data && data.success) {
+              createAnalyticsCharts(data.analytics);
+            } else {
+              console.error('Unable to load analytics:', data ? data.message : 'No data');
+            }
+          })
+          .catch(error => {
+            hideLoading();
+            console.error('Error loading analytics:', error);
+          });
+      }
+      
       // Create charts
       function createCharts(chartData) {
         try {
@@ -1368,13 +1229,16 @@
           }
           
           if (chartData.schools && chartData.schools.length > 0) {
+            // เรียงลำดับข้อมูลโรงเรียนตามจำนวนจากมากไปน้อย
+            const sortedSchools = [...chartData.schools].sort((a, b) => b.count - a.count);
+            
             window.schoolChart = new Chart(schoolCtx, {
               type: 'bar',
               data: {
-                labels: chartData.schools.map(item => item.school || 'ไม่ระบุ'),
+                labels: sortedSchools.map(item => item.school || 'ไม่ระบุ'),
                 datasets: [{
                   label: 'จำนวนการส่ง',
-                  data: chartData.schools.map(item => item.count || 0),
+                  data: sortedSchools.map(item => item.count || 0),
                   backgroundColor: '#2E7D32',
                   borderColor: '#1B5E20',
                   borderWidth: 1
@@ -1389,7 +1253,7 @@
                   tooltip: {
                     callbacks: {
                       label: function(context) {
-                        return `${context.dataset.label}: ${context.raw}`;
+                        return `${context.parsed.y} คน`;
                       }
                     }
                   }
@@ -1415,7 +1279,7 @@
               }
             });
           } else {
-            schoolCtx.canvas.parentNode.innerHTML = '<p style="text-align: center; color: #666;">ไม่มีข้อมูลสถิติตามโรงเรียน</p>';
+            schoolCtx.canvas.parentNode.innerHTML = '<p>ไม่มีข้อมูลสถิติตามโรงเรียน</p>';
           }
           
           // Position chart (pie chart)
@@ -1456,7 +1320,7 @@
                         const value = context.raw || 0;
                         const total = context.dataset.data.reduce((a, b) => a + b, 0);
                         const percentage = Math.round((value / total) * 100);
-                        return `${label}: ${value} (${percentage}%)`;
+                        return `${label}: ${value} คน (${percentage}%)`;
                       }
                     }
                   }
@@ -1467,69 +1331,125 @@
               }
             });
           } else {
-            positionCtx.canvas.parentNode.innerHTML = '<p style="text-align: center; color: #666;">ไม่มีข้อมูลสถิติตามตำแหน่ง</p>';
+            positionCtx.canvas.parentNode.innerHTML = '<p>ไม่มีข้อมูลสถิติตามตำแหน่ง</p>';
+          }
+        } catch (error) {
+          console.error('Error creating charts:', error);
+        }
+      }
+      
+      // Create analytics charts
+      function createAnalyticsCharts(analyticsData) {
+        try {
+          // Daily usage chart
+          const dailyCtx = document.getElementById('dailyUsageChart').getContext('2d');
+          if (window.dailyUsageChart) {
+            window.dailyUsageChart.destroy();
           }
           
-          // Status chart (doughnut chart)
-          const statusCtx = document.getElementById('statusChart').getContext('2d');
-          if (window.statusChart) {
-            window.statusChart.destroy();
-          }
-          
-          if (chartData.statuses && chartData.statuses.length > 0) {
-            window.statusChart = new Chart(statusCtx, {
-              type: 'doughnut',
+          if (analyticsData.daily && analyticsData.daily.length > 0) {
+            window.dailyUsageChart = new Chart(dailyCtx, {
+              type: 'line',
               data: {
-                labels: chartData.statuses.map(item => item.status || 'ไม่ระบุ'),
+                labels: analyticsData.daily.map(item => item.date),
                 datasets: [{
-                  label: 'จำนวน',
-                  data: chartData.statuses.map(item => item.count || 0),
-                  backgroundColor: [
-                    '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56',
-                    '#4BC0C0',
-                    '#9966FF'
-                  ],
-                  borderWidth: 1
+                  label: 'จำนวนการใช้งาน',
+                  data: analyticsData.daily.map(item => item.count),
+                  backgroundColor: 'rgba(46, 125, 50, 0.2)',
+                  borderColor: 'rgba(46, 125, 50, 1)',
+                  borderWidth: 2,
+                  tension: 0.4,
+                  fill: true
                 }]
               },
               options: {
                 responsive: true,
                 plugins: {
                   legend: {
-                    position: 'right',
-                  },
-                  tooltip: {
-                    callbacks: {
-                      label: function(context) {
-                        const label = context.label || '';
-                        const value = context.raw || 0;
-                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                        const percentage = Math.round((value / total) * 100);
-                        return `${label}: ${value} (${percentage}%)`;
-                      }
-                    }
+                    display: false
                   }
                 },
-                animation: {
-                  duration: 1000
-                },
-                cutout: '60%'
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
               }
             });
-          } else {
-            statusCtx.canvas.parentNode.innerHTML = '<p style="text-align: center; color: #666;">ไม่มีข้อมูลสถิติสถานะการตรวจสอบ</p>';
+          }
+          
+          // Action type chart
+          const actionCtx = document.getElementById('actionTypeChart').getContext('2d');
+          if (window.actionTypeChart) {
+            window.actionTypeChart.destroy();
+          }
+          
+          if (analyticsData.actions && analyticsData.actions.length > 0) {
+            window.actionTypeChart = new Chart(actionCtx, {
+              type: 'doughnut',
+              data: {
+                labels: analyticsData.actions.map(item => item.action),
+                datasets: [{
+                  data: analyticsData.actions.map(item => item.count),
+                  backgroundColor: [
+                    '#2E7D32',
+                    '#4CAF50',
+                    '#81C784',
+                    '#A5D6A7'
+                  ]
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    position: 'right'
+                  }
+                }
+              }
+            });
+          }
+          
+          // Method type chart
+          const methodCtx = document.getElementById('methodTypeChart').getContext('2d');
+          if (window.methodTypeChart) {
+            window.methodTypeChart.destroy();
+          }
+          
+          if (analyticsData.methods && analyticsData.methods.length > 0) {
+            window.methodTypeChart = new Chart(methodCtx, {
+              type: 'bar',
+              data: {
+                labels: analyticsData.methods.map(item => item.method),
+                datasets: [{
+                  label: 'จำนวน',
+                  data: analyticsData.methods.map(item => item.count),
+                  backgroundColor: '#2E7D32'
+                }]
+              },
+              options: {
+                responsive: true,
+                plugins: {
+                  legend: {
+                    display: false
+                  }
+                },
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                }
+              }
+            });
           }
         } catch (error) {
-          console.error('Error creating charts:', error);
-          showError('เกิดข้อผิดพลาดในการสร้างกราฟ: ' + error.message);
+          console.error('Error creating analytics charts:', error);
         }
       }
       
       // Load data table for management
       function loadDataTable() {
-        showLoading('กำลังโหลดข้อมูล...');
+        showLoading();
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec?action=getAllData';
         
         fetch(SCRIPT_URL)
@@ -1560,8 +1480,8 @@
                         : '-'
                     }</td>
                     <td>
-                      <button class="action-btn edit-btn" data-id="${submission.id || ''}"><i class="fas fa-edit"></i> แก้ไข</button>
-                      <button class="action-btn delete-btn" data-id="${submission.id || ''}"><i class="fas fa-trash"></i> ลบ</button>
+                      <button class="action-btn edit-btn" data-id="${submission.id || ''}"><i class="fas fa-edit"></i></button>
+                      <button class="action-btn delete-btn" data-id="${submission.id || ''}"><i class="fas fa-trash"></i></button>
                     </td>
                   `;
                   tableBody.appendChild(row);
@@ -1623,21 +1543,20 @@
                 title: 'แก้ไขข้อมูล',
                 html: `
                   <div class="form-group">
-                    <label for="editStatus"><i class="fas fa-check-circle"></i> สถานะ</label>
+                    <label for="editStatus">สถานะ</label>
                     <select id="editStatus" class="swal2-input">
                       <option value="ยังไม่ได้ตรวจสอบ" ${submission.status === 'ยังไม่ได้ตรวจสอบ' ? 'selected' : ''}>ยังไม่ได้ตรวจสอบ</option>
                       <option value="ตรวจสอบแล้ว" ${submission.status === 'ตรวจสอบแล้ว' ? 'selected' : ''}>ตรวจสอบแล้ว</option>
                     </select>
                   </div>
                   <div class="form-group" style="margin-top: 15px;">
-                    <label for="editPassword"><i class="fas fa-lock"></i> รหัสผ่านการจัดการ</label>
+                    <label for="editPassword">รหัสผ่านการจัดการ</label>
                     <input type="password" id="editPassword" class="swal2-input" placeholder="กรอกรหัสผ่าน" required>
                   </div>
                 `,
                 showCancelButton: true,
                 confirmButtonText: 'บันทึก',
                 cancelButtonText: 'ยกเลิก',
-                focusConfirm: false,
                 preConfirm: () => {
                   const password = document.getElementById('editPassword').value;
                   if (!password) {
@@ -1665,7 +1584,7 @@
       }
       
       function updateSubmission(id, data) {
-        showLoading('กำลังอัปเดตข้อมูล...');
+        showLoading();
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec';
         
         fetch(SCRIPT_URL, {
@@ -1692,9 +1611,7 @@
             Swal.fire({
               title: 'สำเร็จ!',
               text: 'ข้อมูลถูกอัปเดตเรียบร้อยแล้ว',
-              icon: 'success',
-              timer: 1500,
-              timerProgressBar: true
+              icon: 'success'
             }).then(() => {
               loadDataTable();
             });
@@ -1721,7 +1638,7 @@
           cancelButtonText: 'ยกเลิก',
           html: `
             <div class="form-group" style="margin-top: 15px;">
-              <label for="deletePassword"><i class="fas fa-lock"></i> รหัสผ่านการจัดการ</label>
+              <label for="deletePassword">รหัสผ่านการจัดการ</label>
               <input type="password" id="deletePassword" class="swal2-input" placeholder="กรอกรหัสผ่าน" required>
             </div>
           `,
@@ -1736,7 +1653,7 @@
         }).then((result) => {
           if (result.isConfirmed) {
             const password = result.value;
-            showLoading('กำลังลบข้อมูล...');
+            showLoading();
             const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec';
             
             fetch(SCRIPT_URL, {
@@ -1780,169 +1697,28 @@
       
       // Print report
       document.getElementById('printReportBtn').addEventListener('click', function() {
-        // Show print dialog
         window.print();
       });
       
-      // Export to Excel
-      document.getElementById('exportExcelBtn').addEventListener('click', function() {
-        showLoading('กำลังเตรียมไฟล์ Excel...');
-        
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec?action=getAllData';
-        
-        fetch(SCRIPT_URL)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            hideLoading();
-            if (data && data.success && data.submissions) {
-              // Prepare data for Excel
-              const excelData = [
-                ['วันที่ส่ง', 'ชื่อ-สกุล', 'ตำแหน่ง', 'วิทยฐานะ', 'โรงเรียน', 'อีเมล', 'เบอร์โทร', 'สถานะ', 'ไฟล์แนบ']
-              ];
-              
-              data.submissions.forEach(submission => {
-                excelData.push([
-                  submission.date,
-                  submission.name,
-                  submission.position,
-                  submission.academicRank,
-                  submission.school,
-                  submission.email,
-                  submission.phone,
-                  submission.status,
-                  submission.fileUrls
-                ]);
-              });
-              
-              // Create workbook
-              const wb = XLSX.utils.book_new();
-              const ws = XLSX.utils.aoa_to_sheet(excelData);
-              XLSX.utils.book_append_sheet(wb, ws, "ข้อมูลผู้ส่ง");
-              
-              // Export to Excel
-              XLSX.writeFile(wb, 'ข้อมูลผู้ส่ง.xlsx');
-            } else {
-              showError('ไม่สามารถส่งออกข้อมูลได้: ' + (data ? data.message : 'ไม่มีข้อมูล'));
-            }
-          })
-          .catch(error => {
-            hideLoading();
-            showError('เกิดข้อผิดพลาดในการส่งออกข้อมูล: ' + error.message);
-          });
+      // Refresh iframe
+      document.getElementById('refreshIframeBtn').addEventListener('click', function() {
+        refreshIframe();
       });
       
-      // Load usage statistics
-      function loadUsageStatistics() {
-        showLoading('กำลังโหลดสถิติการใช้งาน...');
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxL3uYFaFOy9l56fkyc3FTjtgFu-RwjdqwstTKvgrxkgCAx0IF66--UUUAyNmRUB5TNCg/exec?action=getUsageStats';
-        
-        fetch(SCRIPT_URL)
-          .then(response => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            return response.json();
-          })
-          .then(data => {
-            hideLoading();
-            if (data && data.success && data.stats) {
-              const statsContainer = document.getElementById('usageStats');
-              statsContainer.innerHTML = '';
-              
-              // Total usage
-              const totalItem = document.createElement('div');
-              totalItem.className = 'usage-stat-item';
-              totalItem.innerHTML = `
-                <div class="usage-stat-icon">
-                  <i class="fas fa-chart-line"></i>
-                </div>
-                <div class="usage-stat-info">
-                  <h4>${data.stats.totalUsage}</h4>
-                  <p>การใช้งานทั้งหมด</p>
-                </div>
-              `;
-              statsContainer.appendChild(totalItem);
-              
-              // Most common action
-              if (data.stats.actions) {
-                const actions = Object.entries(data.stats.actions);
-                if (actions.length > 0) {
-                  const mostCommonAction = actions.reduce((a, b) => a[1] > b[1] ? a : b);
-                  
-                  const actionItem = document.createElement('div');
-                  actionItem.className = 'usage-stat-item';
-                  actionItem.innerHTML = `
-                    <div class="usage-stat-icon">
-                      <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="usage-stat-info">
-                      <h4>${mostCommonAction[0]}</h4>
-                      <p>การกระทำที่พบบ่อยที่สุด (${mostCommonAction[1]} ครั้ง)</p>
-                    </div>
-                  `;
-                  statsContainer.appendChild(actionItem);
-                }
-              }
-              
-              // Daily usage
-              if (data.stats.dailyUsage) {
-                const days = Object.keys(data.stats.dailyUsage).length;
-                const totalDays = days > 0 ? days : 1;
-                const totalDailyUsage = Object.values(data.stats.dailyUsage).reduce((a, b) => a + b, 0);
-                const avgDailyUsage = Math.round(totalDailyUsage / totalDays);
-                
-                const dailyItem = document.createElement('div');
-                dailyItem.className = 'usage-stat-item';
-                dailyItem.innerHTML = `
-                  <div class="usage-stat-icon">
-                    <i class="fas fa-calendar-day"></i>
-                  </div>
-                  <div class="usage-stat-info">
-                    <h4>${avgDailyUsage}</h4>
-                    <p>การใช้งานเฉลี่ยต่อวัน</p>
-                  </div>
-                `;
-                statsContainer.appendChild(dailyItem);
-              }
-              
-              // Last updated
-              const updatedItem = document.createElement('div');
-              updatedItem.className = 'usage-stat-item';
-              updatedItem.innerHTML = `
-                <div class="usage-stat-icon">
-                  <i class="fas fa-clock"></i>
-                </div>
-                <div class="usage-stat-info">
-                  <h4>อัปเดตล่าสุด</h4>
-                  <p>${new Date().toLocaleString('th-TH')}</p>
-                </div>
-              `;
-              statsContainer.appendChild(updatedItem);
-            } else {
-              showError('ไม่สามารถโหลดสถิติการใช้งานได้');
-            }
-          })
-          .catch(error => {
-            hideLoading();
-            console.error('Error loading usage stats:', error);
-          });
+      function refreshIframe() {
+        const iframe = document.getElementById('dataIframe');
+        iframe.src = iframe.src;
+        Swal.fire({
+          title: 'กำลังรีเฟรชข้อมูล',
+          icon: 'success',
+          timer: 1500,
+          showConfirmButton: false
+        });
       }
       
       // Helper functions
-      function showLoading(message) {
-        const loadingOverlay = document.getElementById('loadingOverlay');
-        const loadingText = loadingOverlay.querySelector('.loading-text');
-        
-        if (message) {
-          loadingText.textContent = message;
-        }
-        
-        loadingOverlay.style.display = 'flex';
+      function showLoading() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
       }
       
       function hideLoading() {
@@ -1965,15 +1741,13 @@
       // Load statistics if on that tab initially
       if (document.getElementById('tab2').classList.contains('active')) {
         loadStatistics();
+        loadAnalytics();
       }
       
       // Load data table if on that tab initially
       if (document.getElementById('tab3').classList.contains('active')) {
         loadDataTable();
       }
-      
-      // Always load usage statistics
-      loadUsageStatistics();
     });
   </script>
 </body>
